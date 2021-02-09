@@ -7,15 +7,15 @@
  * @returns {String}
  */
 
-const countLetters = strToCount => Object.entries(strToCount.split('').reduce((item, idx) => (item[idx] = (item[idx] || 0) + 1, item), {}));
+const countLetters = strToCount => Object.entries(strToCount.split('').reduce((lttr, idx) => (lttr[idx] = (lttr[idx] || 0) + 1, lttr), {}));
 
 const letters = (str, deleter) => { 
     if (typeof(str) !== 'string') {
          return 'undefined';
     }
     if (deleter === undefined) {
-        return countLetters(str).filter(item => item[1] <= 1)
-                                .map(item => item[0])
+        return countLetters(str).filter(letterCouter => letterCouter[1] <= 1)
+                                .map(letterCouter => letterCouter[0])
                                 .join('');
     }
     return deleter ? [...new Set(str)].join('') : [...new Set([...str].reverse())].reverse().join('');
