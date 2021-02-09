@@ -1,17 +1,22 @@
 'use strict';
 /***
- * Function removes characters from a string that occur more than once
+ * Функция удаляет символы, которые встречаются больше 1 раза
  *
- * @param {String} str - initial string
- * @param {Boolean} deleter - if it`s true, keep the first occurrence of characters. If it`s false is the last
+ * @param {String} str - начальная строка
+ * @param {Boolean} deleter - если true, оставить первое вхождение символа. Если false, оставить последнее вхождение символа
  * @returns {String}
  */
 
+const countLetters = strToCount => Object.entries(strToCount.split('').reduce((item, idx) => (item[idx] = (item[idx] || 0) + 1, item), {}));
+
 const letters = (str, deleter) => { 
-    if (deleter === undefined) {
-        return str.replace(new RegExp(`[${[...new Set(str.split('')
-                                                         .reduce((acc, el, i, ar) => ar.slice(0, i).includes(el) ? acc + el : acc, ''))]
-                   .map(el => el + '+').join('')}]`, 'g'), '')
+    if (typeof(str) !== 'string') {
+         return 'undefined';
     }
-    return deleter ? [...new Set(str)].join('') : [...new Set([...str].reverse())].reverse().join('')
+    if (deleter === undefined) {
+        return countLetters(str).filter(item => item[1] <= 1)
+                                .map(item => item[0])
+                                .join('');
+    }
+    return deleter ? [...new Set(str)].join('') : [...new Set([...str].reverse())].reverse().join('');
 }

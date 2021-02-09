@@ -40,6 +40,15 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters(' 0 ', true), ' 0');
 	});
 
+	QUnit.test('Другой тип вместо строки', function (assert) {
+		assert.strictEqual(letters(1234), 'undefined');
+		assert.strictEqual(letters([1, 2, 'hgjg']), 'undefined');
+		assert.strictEqual(letters(true), 'undefined');
+		assert.strictEqual(letters(), 'undefined');
+		assert.strictEqual(letters({'djhgjdfhg': 15}), 'undefined');
+		assert.strictEqual(letters(null), 'undefined');
+	});
+
 	QUnit.test('Оставляет последнюю букву, остальные удаляет', function (assert) {
 		assert.strictEqual(letters('121', false), '21');
 		assert.strictEqual(letters('wWw', false), 'Ww');
