@@ -3,20 +3,22 @@
  * Функция удаляет символы, которые встречаются больше 1 раза
  *
  * @param {String} str - начальная строка
- * @param {Boolean} deleter - если true, оставить первое вхождение символа. Если false, оставить последнее вхождение символа
+ * @param {Boolean} entryType - если true, оставить первое вхождение символа. Если false, оставить последнее вхождение символа
  * @returns {String}
  */
 
-const countLetters = strToCount => Object.entries(strToCount.split('').reduce((lttr, idx) => (lttr[idx] = (lttr[idx] || 0) + 1, lttr), {}));
-
-const letters = (str, deleter) => { 
+const letters = (str, entryType) => { 
     if (typeof(str) !== 'string') {
-         return undefined;
+         return;
     }
-    if (deleter === undefined) {
-        return countLetters(str).filter(letterCouter => letterCouter[1] <= 1)
-                                .map(letterCouter => letterCouter[0])
-                                .join('');
+    if (entryType === undefined) {
+        return str.replace(new RegExp(
+            `[${
+                [...new Set(str.split('').reduce(
+                (meetLetters, letter, letterIndex, currentStr) => currentStr.slice(0, letterIndex).includes(letter) ? meetLetters + letter :
+                 meetLetters, ''))].map(letter => letter + '+').join('')
+              }]`,
+        'g'), '');
     }
-    return deleter ? [...new Set(str)].join('') : [...new Set([...str].reverse())].reverse().join('');
+    return entryType ? [...new Set(str)].join('') : [...new Set([...str].reverse())].reverse().join('');
 }
