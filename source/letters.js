@@ -11,7 +11,7 @@ const countLetters = strToCount => Object.entries(strToCount.split('').reduce((l
 
 const letters = (str, deleter) => { 
     if (typeof(str) !== 'string') {
-         return 'undefined';
+         return undefined;
     }
     if (deleter === undefined) {
         return countLetters(str).filter(letterCouter => letterCouter[1] <= 1)
