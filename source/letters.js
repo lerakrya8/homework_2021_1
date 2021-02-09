@@ -12,13 +12,10 @@ const letters = (str, entryType) => {
          return;
     }
     if (entryType === undefined) {
-        return str.replace(new RegExp(
-            `[${
-                [...new Set(str.split('').reduce(
-                (meetLetters, letter, letterIndex, currentStr) => currentStr.slice(0, letterIndex).includes(letter) ? meetLetters + letter :
-                 meetLetters, ''))].map(letter => letter + '+').join('')
-              }]`,
-        'g'), '');
+        const meetLetters = str.split('').reduce(
+            (acc, letter, letterIndex, currentStr) => currentStr.slice(0, letterIndex).includes(letter) ? acc + letter : acc, '');
+        const expr = new RegExp(`[${[...new Set(meetLetters)].map(letter => letter + '+').join('')}]`,'g');
+        return str.replace(expr, '');
     }
     return entryType ? [...new Set(str)].join('') : [...new Set([...str].reverse())].reverse().join('');
 }
