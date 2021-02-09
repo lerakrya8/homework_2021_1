@@ -24,7 +24,7 @@ const letters = (str, entryType) => {
          return;
     }
     if (entryType === undefined) {
-        const repeatLetters = str.split('').reduce((acc, letter, letterIndex, currentStr) => reducer(acc, letter, letterIndex, currentStr), '');
+        const repeatLetters = str.split('').reduce(findRepeatLetters, '');
         const deleteRepeatLetters = new RegExp(`[${[...new Set(repeatLetters)].map(letter => letter + '+').join('')}]`,'g');
         return str.replace(deleteRepeatLetters, '');
     }
