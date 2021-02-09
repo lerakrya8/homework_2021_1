@@ -25,6 +25,14 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('   '), '');
 	});
 
+	QUnit.test('Удаляет больше 1 вхождения слова', function (assert) {
+		assert.strictEqual(letters('12312341231233'), '4');
+		assert.strictEqual(letters('dddhghgghlk'), 'lk');
+		assert.strictEqual(letters('WWwwWWKkLlKK'), 'kLl');
+		assert.strictEqual(letters('3v5b222m3v33'), '5bm');
+		assert.strictEqual(letters('12121мимиDdDdHHH^&*((*&^'), '');
+	});
+
 	QUnit.test('Оставляет первую букву, остальные удаляет', function (assert) {
 		assert.strictEqual(letters('121', true), '12');
 		assert.strictEqual(letters('wWw', true), 'wW');
