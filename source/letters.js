@@ -6,7 +6,7 @@
  * @param {String} item - текущая буква
  * @param {Number} idx - текущий номер элемента
  * @param {Array} arr - массив, по которому идет обход
- * @returns {String}
+ * @returns {String|indefined}
  */
 
 const findRepeatLetters = (acc, item, idx, arr) => arr.slice(0, idx).includes(item) ? acc + item : acc;
