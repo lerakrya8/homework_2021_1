@@ -20,13 +20,14 @@ const findRepeatLetters = (acc, item, idx, arr) => arr.slice(0, idx).includes(it
  */
 
 const letters = (str, entryType) => { 
-    if (typeof(str) !== 'string') {
+    if (typeof str !== 'string') {
          return;
     }
     if (entryType === undefined) {
         const repeatLetters = str.split('').reduce(findRepeatLetters, '');
-        const deleteRepeatLetters = new RegExp(`[${[...new Set(repeatLetters)].map(letter => letter + '+').join('')}]`,'g');
+        const exprForDelete = [...new Set(repeatLetters)].map(letter => letter + '+').join('');
+        const deleteRepeatLetters = new RegExp(`[${exprForDelete}]`,'g');
         return str.replace(deleteRepeatLetters, '');
     }
-    return entryType ? [...new Set(str)].join('') : [...new Set([...str].reverse())].reverse().join('');
+    return (entryType ? [...new Set(str)] : [...new Set([...str].reverse())].reverse()).join('');
 }
