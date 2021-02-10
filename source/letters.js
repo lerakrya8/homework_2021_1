@@ -6,7 +6,7 @@
  * @param {String} item - текущая буква
  * @param {Number} idx - текущий номер элемента
  * @param {Array} arr - массив, по которому идет обход
- * @returns {String|indefined}
+ * @returns {String}
  */
 
 const findRepeatLetters = (acc, item, idx, arr) => arr.slice(0, idx).includes(item) ? acc + item : acc;
@@ -16,7 +16,7 @@ const findRepeatLetters = (acc, item, idx, arr) => arr.slice(0, idx).includes(it
  *
  * @param {String} str - начальная строка
  * @param {Boolean} entryType - если true, оставить первое вхождение символа. Если false, оставить последнее вхождение символа
- * @returns {String}
+ * @returns {String|undefined}
  */
 
 const letters = (str, entryType) => { 
